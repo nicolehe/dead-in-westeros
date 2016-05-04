@@ -6,7 +6,6 @@ d3.json('/housesdata.json', function(housesData) {
         var aliveCharsURLs = _.pluck(aliveChars, 'url');
 
         var mainHousesSwornMembers = {};
-        var mainHousesNum = {};
 
 
 
@@ -15,7 +14,6 @@ d3.json('/housesdata.json', function(housesData) {
 
             var numMembers = house.swornMembers.length;
             if (numMembers > 1) {
-                mainHousesNum[house.name] = house.swornMembers.length;
                 mainHousesSwornMembers[house.name] = house.swornMembers;
             }
 
@@ -30,6 +28,12 @@ d3.json('/housesdata.json', function(housesData) {
 
             var deadInHouse = _.intersection(char, deadCharsURLs);
             var aliveInHouse = _.intersection(char, aliveCharsURLs);
+
+            _.each(housesData, function(h) {
+                console.log(h.coatOfArms);
+
+            });
+
 
 
             //console.log("There are " + deadInHouse.length + " dead, and " + aliveInHouse.length + " alive in " + house);
@@ -88,7 +92,7 @@ d3.json('/housesdata.json', function(housesData) {
 
             var alive = svgContainer.append('rect')
                 .attr('fill', '#FFC72E')
-                .attr('width', aliveInHouse.length/175 * window.innerWidth)
+                .attr('width', aliveInHouse.length / 175 * window.innerWidth)
                 .attr('height', 50)
                 .attr('x', window.innerWidth / 4)
                 .attr('y', 0)
@@ -104,9 +108,9 @@ d3.json('/housesdata.json', function(housesData) {
                 });
             var dead = svgContainer.append('rect')
                 .attr('fill', '#45315E')
-                .attr('width', deadInHouse.length/175 * window.innerWidth)
+                .attr('width', deadInHouse.length / 175 * window.innerWidth)
                 .attr('height', 50)
-                .attr('x', aliveInHouse.length/175 * window.innerWidth + window.innerWidth / 4)
+                .attr('x', aliveInHouse.length / 175 * window.innerWidth + window.innerWidth / 4)
                 .attr('y', 0)
                 .on("mouseover", function() {
                     return tooltipDead.style("visibility", "visible");
