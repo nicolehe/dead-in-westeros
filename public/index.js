@@ -29,13 +29,6 @@ d3.json('/housesdata.json', function(housesData) {
             var deadInHouse = _.intersection(char, deadCharsURLs);
             var aliveInHouse = _.intersection(char, aliveCharsURLs);
 
-            _.each(housesData, function(h) {
-                console.log(h.coatOfArms);
-
-            });
-
-
-
             //console.log("There are " + deadInHouse.length + " dead, and " + aliveInHouse.length + " alive in " + house);
             _.each(deadInHouse, function(url) {
                 _.each(deadChars, function(char) {
@@ -65,8 +58,6 @@ d3.json('/housesdata.json', function(housesData) {
                 .style("z-index", "10")
                 .style("visibility", "hidden")
                 .html("<span style='color:#F7007C'><strong>" + deadInHouse.length + " dead:" + "</strong></span><span>" + deadNamesArr + "</span>");
-
-
 
             var tooltipAlive = d3.select("body")
                 .append("div")
