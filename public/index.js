@@ -96,7 +96,9 @@ d3.json('/housesdata.json', function(housesData) {
                 })
                 .on("mouseout", function() {
                     return tooltipAlive.style("visibility", "hidden");
-                });
+                })
+                .on('mouseenter', mouseEnterAlive)
+                .on('mouseleave', mouseLeaveAlive);
             var dead = svgContainer.append('rect')
                 .attr('fill', '#45315E')
                 .attr('width', deadInHouse.length / 175 * window.innerWidth)
@@ -112,9 +114,32 @@ d3.json('/housesdata.json', function(housesData) {
                 })
                 .on("mouseout", function() {
                     return tooltipDead.style("visibility", "hidden");
-                });
+                })
+                .on('mouseenter', mouseEnterDead)
+                .on('mouseleave', mouseLeaveDead);
+
+            function mouseEnterAlive() {
+                alive.attr('fill', '#E6A902');
+            }
+
+            function mouseLeaveAlive() {
+                alive.attr('fill', '#FFC72E');
+            }
+
+
+
+
+            function mouseEnterDead() {
+                dead.attr('fill', '#231238');
+            }
+
+            function mouseLeaveDead() {
+                dead.attr('fill', '#45315E');
+            }
 
         });
+
+
 
 
 
